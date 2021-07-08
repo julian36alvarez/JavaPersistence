@@ -1,7 +1,5 @@
 import java.sql.*;
 import java.time.Instant;
-import java.time.ZonedDateTime;
-
 
 public class MensajesDAO {
     public static void CrearMensajeDB(MensajesModel mensaje) {
@@ -26,8 +24,19 @@ public class MensajesDAO {
 
     public static void leerMensajeDB() {
         Conexion db_connect = new Conexion();
+        PreparedStatement ps=null;
+        ResultSet rs = null;
         try (Connection conexion = db_connect.get_postgreSQLConection()) {
-
+            String query = "select * from mensajes";
+            ps=conexion.prepareStatement(query);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                System.out.println("ID = " + rs.getInt("id_mensaje"));
+                System.out.println("Autor = " + rs.getString("autor"));
+                System.out.println("Mensaje = " + rs.getString("mensaje"));
+                System.out.println("Fecha = " + rs.getTimestamp("fecha"));
+                System.out.println("");
+            }
         } catch (SQLException e) {
             System.out.println("e = " + e);
         }
