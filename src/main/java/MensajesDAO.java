@@ -51,8 +51,9 @@ public class MensajesDAO {
                 String consulta = "DELETE FROM public.mensajes WHERE id_mensaje = ?;";
                 ps=conexion.prepareStatement(consulta);
                 ps.setInt(1, id_mensaje);
-                System.out.println("El mensaje ha sido borrado");
                 ps.executeUpdate();
+                System.out.println("El mensaje ha sido borrado");
+
             } catch (SQLException ex) {
                 System.out.println("ex = " + ex);
             }
@@ -62,7 +63,22 @@ public class MensajesDAO {
     }
 
     public static void actualizaMensajeDB(MensajesModel mensaje) {
-
+        Conexion db_connect = new Conexion();
+        try (Connection conexion = db_connect.get_postgreSQLConection()) {
+            PreparedStatement ps = null;
+            try {
+                String consulta = "UPDATE  public.mensajes SET mensaje= ? WHERE id_mensaje = ?;";
+                ps=conexion.prepareStatement(consulta);
+                ps.setString(1, mensaje.getMensaje());
+                ps.setInt(2, mensaje.getId_mensaje());
+                ps.executeUpdate();
+                System.out.println("El mensaje ha sido Actualizado");
+            } catch (SQLException ex) {
+                System.out.println("ex = " + ex);
+            }
+        } catch (SQLException e) {
+            System.out.println("e = " + e);
+        }
     }
 
 }
