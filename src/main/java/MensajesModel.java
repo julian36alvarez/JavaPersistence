@@ -1,13 +1,21 @@
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
+
 public class MensajesModel {
     int id_mensaje;
     String mensaje;
     String autor;
-    String fechaMensaje;
+    Timestamp fechaMensaje;
 
     public MensajesModel() {
     }
 
-    public MensajesModel(String mensaje, String autor, String fechaMensaje) {
+    public static final Calendar tzUTC = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
+
+    public MensajesModel(String mensaje, String autor, Timestamp fechaMensaje) {
         this.mensaje = mensaje;
         this.autor = autor;
         this.fechaMensaje = fechaMensaje;
@@ -37,11 +45,11 @@ public class MensajesModel {
         this.autor = autor;
     }
 
-    public String getFechaMensaje() {
+    public Timestamp getFechaMensaje() {
         return fechaMensaje;
     }
 
-    public void setFechaMensaje(String fechaMensaje) {
+    public void setFechaMensaje(Timestamp fechaMensaje) {
         this.fechaMensaje = fechaMensaje;
     }
 }

@@ -16,26 +16,25 @@ public class Inicio {
             System.out.println("4. Eliminar Mensajes:");
             System.out.println("5. Salir:");
             option = sr.nextInt();
+
+            switch (option){
+                case 1:
+                    MensajeService.crearMensaje();
+                    break;
+                case 2:
+                    MensajeService.listarMensajes();
+                    break;
+                case 3:
+                    MensajeService.editarMensaje();
+                    break;
+                case 4:
+                    MensajeService.borrarMensajes();
+                    break;
+
+                default:
+                    break;
+            }
         }while (option!=5);
-
-        switch (option){
-            case 1:
-                MensajeService.crearMensaje();
-                break;
-            case 2:
-                MensajeService.listarMensajes();
-                break;
-            case 3:
-                MensajeService.editarMensaje();
-                break;
-            case 4:
-                MensajeService.borrarMensajes();
-                break;
-
-            default:
-                break;
-        }
-        Conexion connection = new Conexion();
 
 
 

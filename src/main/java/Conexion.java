@@ -19,7 +19,7 @@ public class Conexion {
     public Connection get_postgreSQLConection() {
         Connection conection = null;
         try {
-            conection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/mensajeria_db", "postgres", "w");
+            conection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/mensajeria_db", "postgres", "1q2w3e4r5T");
 
         } catch (SQLException e) {
             System.out.println(e);
