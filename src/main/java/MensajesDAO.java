@@ -44,6 +44,21 @@ public class MensajesDAO {
 
     public static void borrarMensajeDB(int id_mensaje) {
 
+        Conexion db_connect = new Conexion();
+        try (Connection conexion = db_connect.get_postgreSQLConection()) {
+            PreparedStatement ps = null;
+            try {
+                String consulta = "DELETE FROM public.mensajes WHERE id_mensaje = ?;";
+                ps=conexion.prepareStatement(consulta);
+                ps.setInt(1, id_mensaje);
+                System.out.println("El mensaje ha sido borrado");
+                ps.executeUpdate();
+            } catch (SQLException ex) {
+                System.out.println("ex = " + ex);
+            }
+        } catch (SQLException e) {
+            System.out.println("e = " + e);
+        }
     }
 
     public static void actualizaMensajeDB(MensajesModel mensaje) {
